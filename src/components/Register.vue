@@ -169,7 +169,7 @@ export default defineComponent({
         isLoading.value = true;
 
    try {
-            const res = await axios.post("http://localhost:9000/api/register", formData)
+            const res = await axios.post("http://10.13.116.20:9000/api/register", formData)
             const data = await res.data
             alert( "Hi! " + data.username + " Please Login");
             $router.push({ name: "Login" });

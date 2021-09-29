@@ -250,7 +250,7 @@ export default defineComponent({
     const getTasks = async () => {
 
    try {
-            const res = await axios.get("http://localhost:9000/api/tasks")
+            const res = await axios.get("http://10.13.116.20:9000/api/tasks")
             const data = await res.data
             taskSelector.tasksList = data;
             isFill.value = false
@@ -264,7 +264,7 @@ export default defineComponent({
     };
 
     const logOut = function () {
-      axios.post("http://localhost:9000/api/logout").then((response) => {
+      axios.post("http://10.13.116.20:9000/api/logout").then((response) => {
         localStorage.removeItem("username");
         localStorage.removeItem("taskgroup");
         $router.push({ name: "Login" });
@@ -314,7 +314,7 @@ export default defineComponent({
       let submitDate = format(pickdate.date,"yyyyMMdd")
       isLoading.value = true;
       try {
-        const res = await axios.get("http://localhost:9000/api/submitted/"+submitDate)
+        const res = await axios.get("http://10.13.116.20:9000/api/submitted/"+submitDate)
         const data = await res.data
        vDataSubmit.submittedData = data;
        console.log(vDataSubmit.submittedData.length)
@@ -338,7 +338,7 @@ export default defineComponent({
       } else {
  isLoading.value = true;
    try {
-            const res = await axios.post("http://localhost:9000/api/submit", submitedTask.submitRequest)
+            const res = await axios.post("http://10.13.116.20:9000/api/submit", submitedTask.submitRequest)
             const data = await res.data
              alert(data.message);
               $router.push({ name: "Home" });

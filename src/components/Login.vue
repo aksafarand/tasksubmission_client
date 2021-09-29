@@ -117,7 +117,7 @@ export default defineComponent({
           isLoading.value = true;
          
           try {
-            const res = await axios.post("http://localhost:9000/api/login", formData)
+            const res = await axios.post("http://10.13.116.20:9000/api/login", formData)
             const data = await res.data
             localStorage.setItem("username", data.username);
             localStorage.setItem("taskgroup", data.taskgroup);
