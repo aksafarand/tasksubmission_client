@@ -58,7 +58,7 @@
       v-on:keyup.enter="selectTask"
       @click="clearInput"
       list="taskList"
-      placeholder="Select..."
+      placeholder="Select task from list or choose OTHER if not provided in the list"
       style="margin-right:10px;padding-right:10px;max-width:600px"
     />
   
@@ -214,7 +214,7 @@ interface pickdate {
 const isView = ref(false);
 let isFill = ref(false);
 let isLoading = ref(false);
-let custom = ref('Custom Task:');
+let custom = ref('OTHER:');
 export default defineComponent({
     components: {
         Datepicker,
@@ -272,8 +272,16 @@ export default defineComponent({
     };
 
     const selectTask = () => {
-     if (taskSelector.taskname == custom.value) {
-        alert('Custom Task Should Not Be Empty');
+
+      let isInTask = taskSelector.tasksList.find(tl => tl.taskname === taskSelector.taskname);
+ 
+      if (isInTask === undefined && !taskSelector.taskname.includes(custom.value)) {
+        alert('You can only create OTHER or select task from list')
+        return
+      }
+
+     if (taskSelector.taskname === custom.value) {
+        alert('OTHER should not be followed by your task, i.e: OTHER:[taskname]');
         return
      } 
      
